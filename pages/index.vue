@@ -9,14 +9,21 @@
                 <div class="bg-green-500 h-3 w-3 rounded-full"></div>
             </div>
             <div class="flex flex-col mt-4 text-gray-500">
-                <VueWriter :array="['Web terminal [Version 1.0.2]']" :typeSpeed="70" :iterations="0"/>
-                <VueWriter :array="[`&copy; Hessel P ${date}. All rights served`]" :typeSpeed="70" :start="70" :iterations="0"/>
+                <VueWriter :array="['Web terminal [Version 1.0.2]']" :typeSpeed="70" :iterations="1"/>
+                <VueWriter :array="[`&copy; Hessel P ${date}. All rights served`]" :typeSpeed="70" :start="70" :iterations="1"/>
                 <span class="text-gray-500"></span>   
             </div>
             <div class="flex flex-col lines">
+                <!-- v-for -->
+                <div class="flex mt-4" v-for="(line, index) in lines" :key="index">
+                    <span class="text-green-400">computer:~$</span>
+                    <span class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0">{{line.text}}</span>
+                </div>
+                <!-- /v-for-->
+                <!-- input staat hieronder, als extra regel-->
                 <div class="flex mt-4">
                     <span class="text-green-400">computer:~$</span>
-                    <input v-model="text" class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0"/>
+                    <input v-model="text" @keypress.enter="enterPressed" class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0"/>
                 </div>
                 <div class="mt-4 ml-4">
                     output
@@ -26,47 +33,34 @@
     </div>
 </template>
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref } from 'vue';
 import VueWriter from 'vue-writer'
 export default {
     components: {
         VueWriter
     },
     setup() {     
-        
         const date = new Date().getFullYear().toString()
         const text = ref('') 
-        const newCommandLine = () => {
-            const input = document.querySelector('input')
-            const line = document.createElement('div')
-            line.classList.add('flex', 'mt-4')
-            line.innerHTML = `
-                <span class="text-green-400">computer:~$</span>
-                <input class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0"/>
-            `
+        const lines = [];
 
-            document.querySelector('.lines').append(line)
-            input.value = ''
+        const enterPressed = () => {
+            lines.push({text: text.value});
+            text.value = '';
+        
+            console.log('haaaai')
+
         }
 
-        onMounted(() => {
-            document.querySelector('input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    console.log(e)
-                    newCommandLine()
-                }
-            })
             /**
-            * @todo Implement commands.
-            * 
-            */
-        })
-
-
-
+             * todo: - Read text.value to detect the command used
+             *  - Execute the command (I recommend making separate files for the command logic)
+             *  - Add output to lines array
+             *  - Add some properties to the line objects to control how they're shown in the web terminal.
+             */
         
 
-        return { newCommandLine, date, text }
+        return { lines, enterPressed, date, text }
     }
 }
 </script>
