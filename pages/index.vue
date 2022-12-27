@@ -13,10 +13,10 @@
             </div>
             <div class="flex flex-col lines">
                 <!-- v-for -->
-                <div class="flex mt-4 " v-for="(line, index) in lines" :key="index">
+                <div class="flex mt-4 justify-start" v-for="(line, index) in lines" :key="index">
                     <template v-if="line.type === 'input'">
                         <span class="text-green-400">computer:~$</span>
-                        <input v-model="text" @keypress.enter="enterPressed" class="border-0 border-transparent w-full bg-transparent focus:outline-none focus:ring-0" />
+                        <input v-if="inputVisible" v-model="text" @keypress.enter="enterPressed" class="border-0 border-transparent w-full bg-transparent focus:outline-none focus:ring-0" />
                     </template>
                     <span class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0">{{line.text}}</span>
                 </div>
@@ -42,6 +42,8 @@
             const date = new Date().getFullYear().toString();
             const text = ref("");
             const lines = [];
+            const inputVisible = ref(true);
+
 
             const enterPressed = () => {
                 const command = text.value;
@@ -51,9 +53,10 @@
                 lines.push({ text: command, type: "input" });
                 lines.push(output);
                 text.value = "";
+                inputVisible.value = false;
             };
 
-            return { lines, enterPressed, date, text };
+            return { lines, enterPressed, date, text, inputVisible };
         },
     };
 </script>
