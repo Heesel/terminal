@@ -19,3 +19,27 @@
 .scrollbar::-webkit-scrollbar-thumb:hover {
     background: #64748b; 
 }
+
+.green { 
+    color: #22c55e !important;
+}
+
+.red { 
+    color: #dc2626 !important;
+}
+
+.blue { 
+    color: #2563eb !important;
+}
+
+.yellow { 
+    color: #facc15 !important;
+}
+
+.purple { 
+    color: #9333ea !important;
+}
+
+.orange { 
+    color: #f97316 !important;
+}

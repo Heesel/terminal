@@ -18,7 +18,7 @@
                     <!-- v-for -->
                     <div class="flex mt-4 justify-start" v-for="(line, index) in lines" :key="index">
                         <template v-if="line.type === 'input'">
-                            <span id="prefix" class="text-green-400">computer:~$</span>
+                            <span class="text-green-400 prefix">computer:~$</span>
                             <input v-if="inputVisible" @keydown="previousCommands" v-model="text" @keypress.enter="enterPressed" class="border-0 border-transparent w-full bg-transparent focus:outline-none focus:ring-0" />
                         </template>
                         <span v-html="line.text" class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0"></span>
@@ -26,7 +26,7 @@
                     <!-- /v-for-->
                     
                     <div class="flex mt-4">
-                        <span id="prefix" class="text-green-400">computer:~$</span>
+                        <span class="text-green-400 prefix">computer:~$</span>
                         <input v-model="text" @keydown="previousCommands" @keypress.enter="enterPressed" class="border-0 border-transparent w-full bg-transparent ml-3 focus:outline-none focus:ring-0" />
                     </div>
                 </div>
@@ -43,9 +43,11 @@
             VueWriter,
         },
         setup() {
+            
             const date = new Date().getFullYear().toString();
             const text = ref("");
             const lines = [];
+            
             const history = [];
             const inputVisible = ref(true);
             const currentCommandIndex = ref(-1);
@@ -53,7 +55,7 @@
             const enterPressed = () => {
                 const command = text.value;
                 if(typeof command !== 'string' || command.length === 0) return;
-                
+
                 lines.push({ text: command, type: "input" });
                 history.unshift({ text: command, type: "history" });
                 executeCommand({command, lines, currentCommandIndex});

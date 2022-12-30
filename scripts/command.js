@@ -65,27 +65,35 @@ function link(command) {
 function changeColor(args) {
 
     const colors = [
-        { color: 'green', style: '#22c55e'},
-        { color: 'red', style: '#dc2626'},
-        { color: 'blue', style: '#2563eb'},
-        { color: 'yellow', style: '#facc15'},
-        { color: 'orange', style: '#f97316'},
-        { color: 'purple', style: '#9333ea'},
+        { color: 'green' },
+        { color: 'red'   },
+        { color: 'blue'  },
+        { color: 'yellow'},
+        { color: 'orange'},
+        { color: 'purple'},
     ]
 
     if(args.length === 1) return 'Please specify a color';
     if(!colors.find(item => item.color === args[1])) return 'Invalid color. Please use the colors command to see a list of colors';
 
     const color = args[1];
-    const terminal = document.getElementById('prefix');
+    const prefix = document.querySelectorAll('.prefix');
 
-    colors.forEach(item => {
-        if(item.color === color) {
-            terminal.style.color = item.style;
-        }
+    prefix.forEach((prefix) => {
+        colors.forEach((item) => {
+            if (item.color === color) {
+                prefix.classList.add(item.color);
+            }
+        });
     });
 
     return 'Color changed';
+}
+
+function playAudio() { 
+    const audio = new Audio('./assets/audio/world.mp3');
+    audio.play();
+    return 'Playing audio';
 }
 
 /**
@@ -116,6 +124,8 @@ export function executeCommand({ command, lines }) {
         case "colors":
             lines.push({ text: colors(), type: "output" });
             break;
+        case "katie":
+            lines.push({ text: playAudio(), type: "output" });
         case "clear":
             lines.splice(0, lines.length);
             break;
