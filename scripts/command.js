@@ -7,7 +7,8 @@ function help() {
         'linkedin - prints linkedin link', 
         'help - shows this list',
         'colors - shows a list of colors',
-        'color [color] - changes the color of the terminal'
+        'color [color] - changes the color of the terminal',
+        'clear - clears the terminal'
     ]
 
     items.forEach(item => {
@@ -60,21 +61,71 @@ function link(command) {
     return anchor.outerHTML;
 }
 
-export function executeCommand(command) {
+
+function changeColor(args) {
+
+    const colors = [
+        { color: 'green', style: '#22c55e'},
+        { color: 'red', style: '#dc2626'},
+        { color: 'blue', style: '#2563eb'},
+        { color: 'yellow', style: '#facc15'},
+        { color: 'orange', style: '#f97316'},
+        { color: 'purple', style: '#9333ea'},
+    ]
+
+    if(args.length === 1) return 'Please specify a color';
+    if(!colors.find(item => item.color === args[1])) return 'Invalid color. Please use the colors command to see a list of colors';
+
+    const color = args[1];
+    const terminal = document.getElementById('prefix');
+
+    colors.forEach(item => {
+        if(item.color === color) {
+            terminal.style.color = item.style;
+        }
+    });
+
+    return 'Color changed';
+}
+
+/**
+ * Maar als je types gaat noteren, dan kun je miss beter gewoon typescript gaan leren :P
+ * typescript is 100% JS-compatibel, dus je kunt gwn geleidelijk overstappen.
+ * te grote stap voor nu
+ * Ja oke, maar het fijne aan TS is dat je niet in één keer alles om hoeft te gooien. Kun je gwn geleidelijk doen.
+ * ooit zal ik het wel doen Oke.
+ * @param {command} string 
+ * @param {lines} {text: string, type: string}[]
+ */
+export function executeCommand({ command, lines }) {
+    const args = command.split(" ");
+
+    if(args[0] === "color") {
+        lines.push({ text: changeColor(args), type: "output" });
+        return;
+    }
+    
     switch (command) {
         case "hello world":
-            return { text: "Hello world!", type: "output" };
+            lines.push({ text: "Hello world!", type: "output" });
+            break;
         case "github":
-            return { text: link(command), type: "output" };  
+            lines.push({ text: link(command), type: "output" });  
+            break;
         case "linkedin":
-            return { text: link(command), type: "output" }; 
+            lines.push({ text: link(command), type: "output" }); 
+            break;
         case "help":
-            return { text: help(), type: "output" };
+            lines.push({ text: help(), type: "output" });
+            break;
         case "colors":
-            return { text: colors(), type: "output" };
-        case "color":
-            return { text: "Please specify a color. Use the colors command for all the colors", type: "output" };
+            lines.push({ text: colors(), type: "output" });
+            break;
+        case "clear":
+            lines.splice(0, lines.length);
+            break;
         default:
-            return { text: "Unknown command", type: "output" };
+            lines.push({ text: "Unknown command", type: "output" });
+            break;
     }
 }
