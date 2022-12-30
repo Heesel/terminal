@@ -91,7 +91,7 @@ function changeColor(args) {
 }
 
 function playAudio() { 
-    const audio = new Audio('./assets/audio/world.mp3');
+    const audio = new Audio('World.mp3');
     audio.play();
     return 'Playing audio';
 }
