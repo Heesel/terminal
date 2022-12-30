@@ -6,7 +6,7 @@
                 <div class="bg-orange-300 h-3 w-3 rounded-full"></div>
                 <div class="bg-green-500 h-3 w-3 rounded-full"></div>
             </div>
-            <div class="h-[calc(100%-0.75rem)] overflow-y-auto scrollbar">
+            <div class="h-[calc(100%-1.75rem)] overflow-y-auto scrollbar">
                 <div class="flex flex-col mt-4 text-gray-500">
                     <VueWriter :array="['Web terminal [Version 1.0.2]']" :typeSpeed="70" :iterations="1" />
                     <VueWriter :array="[`&copy; Hessel P ${date}. All rights served`]" :typeSpeed="70" :start="70" :iterations="1" />
