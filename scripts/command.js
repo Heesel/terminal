@@ -7,7 +7,7 @@ function help() {
         'linkedin - prints linkedin link', 
         'help - shows this list',
         'colors - shows a list of colors',
-        'color [color] - changes the color of the terminal',
+        'color [color] - changes the color of the terminal prefix',
         'clear - clears the terminal'
     ]
 
@@ -89,11 +89,6 @@ function changeColor(args) {
 }
 
 /**
- * Maar als je types gaat noteren, dan kun je miss beter gewoon typescript gaan leren :P
- * typescript is 100% JS-compatibel, dus je kunt gwn geleidelijk overstappen.
- * te grote stap voor nu
- * Ja oke, maar het fijne aan TS is dat je niet in één keer alles om hoeft te gooien. Kun je gwn geleidelijk doen.
- * ooit zal ik het wel doen Oke.
  * @param {command} string 
  * @param {lines} {text: string, type: string}[]
  */
