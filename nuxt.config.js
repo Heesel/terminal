@@ -11,7 +11,7 @@ export default defineNuxtConfig({
           ],
           link: [
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300;1,400&display=swap' },
-            { rel: 'stylesheet', href: './public/scrollbar.css' }
+            { rel: 'stylesheet', href: 'scrollbar.css' }
           ],
         }
       },
