@@ -1,29 +1,19 @@
-# Nuxt 3 Minimal Starter
+# Welcome to my portfolio
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Hi everyone,
 
-## Setup
+Welcome to my portfolio website. I made a simple terminal in the browser using Nuxt JS and tailwindcss. 
+The terminal has commands like:
 
-Make sure to install the dependencies:
+- help
+- colors
+- color [color]
+- clear
+- github
+- linkedin
+- and more...
 
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
+It also features a command history that works by using the up and down arrow key. Due to the fact that I am physically, I build the website for 80% using my voice. 
 
 ## Production
 
