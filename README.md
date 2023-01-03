@@ -13,20 +13,4 @@ The terminal has commands like:
 - linkedin
 - and more...
 
-It also features a command history that works by using the up and down arrow key. Due to the fact that I am physically, I build the website for 80% using my voice. 
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+It also features a command history that works by using the up and down arrow key. Due to the fact that I am physically, I build the website for 80% using my voice.
