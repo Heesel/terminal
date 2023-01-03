@@ -13,4 +13,4 @@ The terminal has commands like:
 - linkedin
 - and more...
 
-It also features a command history that works by using the up and down arrow key. Due to the fact that I am physically, I build the website for 80% using my voice.
+It also features a command history that works by using the up and down arrow key. Due to the fact that I am physically disabled, I build the website for 80% using my voice.
