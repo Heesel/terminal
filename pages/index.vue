@@ -42,7 +42,7 @@
         components: {
             VueWriter,
         },
-        setup() {
+        async setup() {
             
             const date = new Date().getFullYear().toString();
             const text = ref("");
